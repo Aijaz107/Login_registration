@@ -1,0 +1,82 @@
+{% extends "employee_register/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				
+				<form class="login100-form validate-form" onsubmit="getMyValue();" >
+					
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="email" placeholder="Username">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<p id="myid" style="display:none">{{pswd_list}}</p>
+						<input class="input100" type="password" name="pass" id="pass" placeholder="Password">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Login
+						</button>
+					</div>
+
+				
+				</form>
+			</div>
+		</div>
+	</div>
+<script>
+	//function getMyValue()
+	//{
+	function getMyValue()
+	{
+	var user_pwd=document.getElementById("pass").value;
+	var db_pwds=document.getElementById("myid").textContent;
+	//alert(typeof(db_pwds));
+	var i=0;
+	for(i=0;i<db_pwds.length;i++)
+	{
+		if(user_pwd==db_pwds[i])
+		{
+			open("{% url 'employee_list' %}")
+			break;
+		}
+
+	}
+	if(i>=db_pwds.length)
+	{
+		alert("Invalid Details")
+	}
+	}
+//	var alist=document.getElementById("myid").textContent;
+//	alert(alist);	
+	//var mylist[]={{pswd_list|escapejs}};
+
+	
+   
+	
+//	}
+</script>
+
+</body>
+</html>
+{% endblock content %}
